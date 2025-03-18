@@ -5,13 +5,19 @@ import { toppings } from "./toppings";
 function App() {
   const [allChecked, setAllChecked] = useState(false);
   const [checkedList, setCheckedList] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   const handleChange = (e) => {
     const { name, checked } = e.target;
+    const topping = toppings.find((item) => item.name === name);
+    if (!topping) return;
+
     if (checked) {
       setCheckedList((prev) => [...prev, name]);
+      setTotalPrice((prev) => prev + topping.price);
     } else {
       setCheckedList((prev) => prev.filter((item) => item !== name));
+      setTotalPrice((prev) => prev - topping.price);
     }
   };
 
@@ -21,8 +27,10 @@ function App() {
 
     if (isChecked) {
       setCheckedList(toppings.map((item) => item.name));
+      setTotalPrice(toppings.reduce((acc, curr) => acc + curr.price, 0));
     } else {
       setCheckedList([]);
+      setTotalPrice(0);
     }
   };
 
@@ -63,6 +71,13 @@ function App() {
               </div>
             );
           })}
+          <div className="total">
+            <div>Total </div>
+            <div>
+              <span>: Rs </span>
+              {totalPrice}
+            </div>
+          </div>
         </div>
       </div>
     </div>

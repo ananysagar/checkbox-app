@@ -1,3 +1,6 @@
 .list-items {
   display: flex;
 }
+.total {
+  display: flex;
+}
