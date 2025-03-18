@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import { toppings } from "./toppings";
 
@@ -25,6 +25,14 @@ function App() {
       setCheckedList([]);
     }
   };
+
+  useEffect(() => {
+    if(checkedList.length === toppings.length) {
+      setAllChecked(true)
+    } else {
+      setAllChecked(false)
+    }
+  },[checkedList])
 
   return (
     <div className="App">
