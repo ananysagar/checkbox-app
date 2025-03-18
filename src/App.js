@@ -27,12 +27,12 @@ function App() {
   };
 
   useEffect(() => {
-    if(checkedList.length === toppings.length) {
-      setAllChecked(true)
+    if (checkedList.length === toppings.length) {
+      setAllChecked(true);
     } else {
-      setAllChecked(false)
+      setAllChecked(false);
     }
-  },[checkedList])
+  }, [checkedList]);
 
   return (
     <div className="App">
